@@ -14,7 +14,6 @@ done
 
 for f in /docker-entrypoint-init.d/*.sh; do
   if [ -f "$f" ]; then
-    chmod +x "$f"
     "$f"
   fi
 done
