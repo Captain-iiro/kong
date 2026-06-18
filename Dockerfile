@@ -10,6 +10,7 @@ RUN \
 USER kong
 
 ENV KONG_NGINX_MAIN_DAEMON=off
+ENV KONG_ADMIN_LISTEN=0.0.0.0:8001
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY kong-init.sh /docker-entrypoint-init.d/kong-init.sh
