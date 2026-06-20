@@ -52,7 +52,7 @@ curl -s -X POST "$ADMIN/consumers/konga-admin/key-auth" \
 
 curl -s -X PUT "$ADMIN/services/admin-api" \
   -H "Content-Type: application/json" \
-  -d '{"name":"admin-api","url":"http://127.0.0.1:8001"}' -o /dev/null
+  -d '{"name":"admin-api","url":"http://localhost:8001"}' -o /dev/null
 
 curl -s -X PUT "$ADMIN/services/admin-api/routes/admin-route" \
   -H "Content-Type: application/json" \
