@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+if [ "$KONG_DATABASE_RESET" = "true" ]; then
+  echo "Resetting Kong database..."
+  kong migrations reset --force
+fi
+
 kong migrations bootstrap
 
 KONG_NGINX_MAIN_DAEMON=on kong start
