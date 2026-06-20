@@ -3,6 +3,11 @@ set -e
 
 ADMIN="http://localhost:8001"
 
+echo "Cleaning up all plugins (recover from bad config)..."
+curl -s "$ADMIN/plugins?size=1000" | grep -o '"id":"[^"]*"' | cut -d'"' -f4 | while read id; do
+  curl -s -X DELETE "$ADMIN/plugins/$id" -o /dev/null
+done 2>/dev/null || true
+
 echo "Configuring Backend A..."
 curl -s -X PUT "$ADMIN/services/backend-a" \
   -H "Content-Type: application/json" \
