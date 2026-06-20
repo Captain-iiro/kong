@@ -23,5 +23,4 @@ for f in /docker-entrypoint-init.d/*.sh; do
   fi
 done
 
-kong stop
-exec kong start
+exec kong restart

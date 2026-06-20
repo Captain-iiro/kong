@@ -3,9 +3,18 @@ set -e
 
 ADMIN="http://localhost:8001"
 
-echo "Cleaning up all plugins (recover from bad config)..."
+echo "Full configuration reset..."
 curl -s "$ADMIN/plugins?size=1000" | grep -o '"id":"[^"]*"' | cut -d'"' -f4 | while read id; do
-  curl -s -X DELETE "$ADMIN/plugins/$id" -o /dev/null
+  curl -s -X DELETE "$ADMIN/plugins/$id" -o /dev/null || true
+done 2>/dev/null || true
+curl -s "$ADMIN/routes?size=1000" | grep -o '"id":"[^"]*"' | cut -d'"' -f4 | while read id; do
+  curl -s -X DELETE "$ADMIN/routes/$id" -o /dev/null || true
+done 2>/dev/null || true
+curl -s "$ADMIN/services?size=1000" | grep -o '"id":"[^"]*"' | cut -d'"' -f4 | while read id; do
+  curl -s -X DELETE "$ADMIN/services/$id" -o /dev/null || true
+done 2>/dev/null || true
+curl -s "$ADMIN/consumers?size=1000" | grep -o '"id":"[^"]*"' | cut -d'"' -f4 | while read id; do
+  curl -s -X DELETE "$ADMIN/consumers/$id" -o /dev/null || true
 done 2>/dev/null || true
 
 echo "Configuring Backend A..."
