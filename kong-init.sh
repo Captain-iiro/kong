@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-ADMIN="http://localhost:8001"
+ADMIN="http://127.0.0.1:8001"
 
 echo "Full configuration reset..."
 curl -s "$ADMIN/plugins?size=1000" | grep -o '"id":"[^"]*"' | cut -d'"' -f4 | while read id; do

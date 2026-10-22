@@ -11,7 +11,7 @@ kong migrations bootstrap
 KONG_NGINX_MAIN_DAEMON=on kong start
 
 for i in $(seq 1 30); do
-  if curl -s -o /dev/null http://localhost:8001/ 2>/dev/null; then
+  if curl -s -o /dev/null http://127.0.0.1:8001/ 2>/dev/null; then
     break
   fi
   sleep 1
@@ -23,4 +23,4 @@ for f in /docker-entrypoint-init.d/*.sh; do
   fi
 done
 
-exec kong start
+exec kong restart
